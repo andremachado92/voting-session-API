@@ -1,12 +1,10 @@
 package com.andremachado.br.domain.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
+@Builder
 @Getter
 @Setter
 @Entity
@@ -19,9 +17,11 @@ public class Agenda {
     @EqualsAndHashCode.Include
     private Long id;
 
-    @Column(name = "AGEND_DESCRIPTION", nullable = false)
+    @Column(nullable = false)
     private String description;
 
-    @Column(name = "AGEND_SESSIONS_STATUS",  nullable = false)
+    @Column(nullable = false)
     private String sessionStatus;
+
+    private Long sessionDurationInMinutes;
 }
