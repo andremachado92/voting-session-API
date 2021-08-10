@@ -23,5 +23,4 @@ public class Agenda {
     @Column(nullable = false)
     private String sessionStatus;
 
-    private Long sessionDurationInMinutes;
 }
