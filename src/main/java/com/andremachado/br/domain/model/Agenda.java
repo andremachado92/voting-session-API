@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Agenda {
 
