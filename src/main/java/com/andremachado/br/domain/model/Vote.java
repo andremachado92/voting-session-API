@@ -12,21 +12,20 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Table(name = "VOTE")
 public class Vote {
 
     @Id
-    @Column(name = "VOTE_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
 
-    @Column(name = "VOTE_ID")
+    @ManyToOne
+    @JoinColumn(nullable = false)
     private Agenda agenda;
 
-    @Column(name = "VOTE_ID")
+    @Column(nullable = false)
     private Long associateId;
 
-    @Column(name = "VOTE_ID")
+    @Column(nullable = false)
     private String associateCpf;
 }

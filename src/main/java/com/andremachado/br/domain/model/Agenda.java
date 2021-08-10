@@ -12,18 +12,16 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Table(name = "AGENDA")
 public class Agenda {
 
     @Id
-    @Column(name = "AGEND_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
 
-    @Column(name = "AGEND_DESCRIPTION")
+    @Column(name = "AGEND_DESCRIPTION", nullable = false)
     private String description;
 
-    @Column(name = "AGEND_SESSIONS_STATUS")
+    @Column(name = "AGEND_SESSIONS_STATUS",  nullable = false)
     private String sessionStatus;
 }
