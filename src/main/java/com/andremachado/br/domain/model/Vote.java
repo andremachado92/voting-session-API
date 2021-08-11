@@ -1,16 +1,15 @@
 package com.andremachado.br.domain.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
+@Builder
 @Getter
 @Setter
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Vote {
 
@@ -24,7 +23,7 @@ public class Vote {
     private Agenda agenda;
 
     @Column(nullable = false)
-    private Long associateId;
+    private String associateId;
 
     @Column(nullable = false)
     private String associateCpf;
