@@ -1,4 +1,4 @@
-package com.andremachado.br.api;
+package com.andremachado.br.api.controller;
 import com.andremachado.br.domain.service.AgendaService;
 import com.andremachado.br.dto.AgendaCreateDTO;
 import org.springframework.beans.factory.annotation.Autowired;
