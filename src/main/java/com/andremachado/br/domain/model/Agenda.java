@@ -9,6 +9,8 @@ import javax.persistence.*;
 @Setter
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@AllArgsConstructor
+@NoArgsConstructor
 public class Agenda {
 
     @Id
