@@ -20,10 +20,10 @@ public class AgendaController {
         agendaService.create(agendaCreateDTO);
     }
 
-    @PostMapping("/{agendaId}/openSession")
+    @PutMapping("/{agendaId}/openSession")
     @ResponseStatus(code = HttpStatus.OK)
     public void openSession(@PathVariable Long agendaId,
-                            @RequestParam(value = "sessionDurationInMinutes") Integer sessionDurationInMinutes) throws InterruptedException {
+                            @RequestParam(value = "sessionDurationInMinutes") Integer sessionDurationInMinutes) {
         agendaService.openSessionVotingOnAgenda(agendaId, sessionDurationInMinutes);
     }
 }

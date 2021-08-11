@@ -35,7 +35,7 @@ public class AgendaServiceImpl implements AgendaService {
 
     @Override
     @Async
-    public void openSessionVotingOnAgenda(Long agendaId, Integer sessionDurationInMinutes) throws InterruptedException {
+    public void openSessionVotingOnAgenda(Long agendaId, Integer sessionDurationInMinutes){
         var currentAgenda = findById(agendaId);
         currentAgenda.setSessionStatus(SessionVotingStatusEnum.SESSION_VOTING_OPEN.getName());
         agendaRepository.save(currentAgenda);
@@ -44,7 +44,7 @@ public class AgendaServiceImpl implements AgendaService {
 
 
     @Async
-    private void vote(Integer sessionDurationInMinutes, Agenda currentAgenda) throws InterruptedException {
+    private void vote(Integer sessionDurationInMinutes, Agenda currentAgenda) {
         LocalTime duration;
         if(sessionDurationInMinutes == null || sessionDurationInMinutes == 0L){
             duration = LocalTime.now().plusMinutes(1);
