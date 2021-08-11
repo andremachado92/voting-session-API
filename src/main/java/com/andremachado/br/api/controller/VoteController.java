@@ -1,4 +1,5 @@
 package com.andremachado.br.api.controller;
+import com.andremachado.br.domain.model.enums.VoteStatusEnum;
 import com.andremachado.br.domain.service.VoteService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class VoteController {
     @ResponseStatus(code = HttpStatus.OK)
     public void vote(@PathVariable Long agendaId,
                      @RequestParam("associateCpf") String associateCpf,
-                     @RequestParam("voteDescription") String voteDescription ){
-        voteService.vote(agendaId,associateCpf,voteDescription);
+                     @RequestParam("voteDescription") VoteStatusEnum vote ){
+        voteService.vote(agendaId,associateCpf,vote);
     }
 }
