@@ -27,4 +27,7 @@ public class Vote {
 
     @Column(nullable = false)
     private String associateCpf;
+
+    @Column(nullable = false)
+    private String voteDescription;
 }

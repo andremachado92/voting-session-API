@@ -26,7 +26,7 @@ public class VoteServiceImpl implements VoteService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void vote(Long agendaId, String associateCpf) {
+    public void vote(Long agendaId, String associateCpf,String voteDescription) {
         var agenda = agendaService.findById(agendaId);
         var cpf = cpfReplace(associateCpf);
 
@@ -37,8 +37,9 @@ public class VoteServiceImpl implements VoteService {
             Vote.builder().
                     agenda(agenda).
                     associateCpf(associateCpf).
-                    associateId(UUID.randomUUID().toString())
-                    .build()
+                    associateId(UUID.randomUUID().toString()).
+                    voteDescription(voteDescription).
+                    build()
         );
 
     }

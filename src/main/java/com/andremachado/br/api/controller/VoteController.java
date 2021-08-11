@@ -13,7 +13,9 @@ public class VoteController {
 
     @PostMapping("/agenda/{agendaId}")
     @ResponseStatus(code = HttpStatus.OK)
-    public void vote(@PathVariable Long agendaId, @RequestParam("associateCpf") String associateCpf ){
-        voteService.vote(agendaId,associateCpf);
+    public void vote(@PathVariable Long agendaId,
+                     @RequestParam("associateCpf") String associateCpf,
+                     @RequestParam("voteDescription") String voteDescription ){
+        voteService.vote(agendaId,associateCpf,voteDescription);
     }
 }
