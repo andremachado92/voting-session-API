@@ -8,6 +8,7 @@ import com.andremachado.br.domain.model.enums.VoteStatusEnum;
 import com.andremachado.br.domain.repository.VoteRepository;
 import com.andremachado.br.domain.service.AgendaService;
 import com.andremachado.br.domain.service.VoteService;
+import com.andremachado.br.dto.ResultDTO;
 import com.andremachado.br.dto.ValidationAssociateCpfDTO;
 import com.andremachado.br.utils.Utils;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -35,7 +37,7 @@ public class VoteServiceImpl implements VoteService {
         var cpf = Utils.cpfReplace(associateCpf);
 
         Utils.validationAgenda(agenda);
-        validationAssociateCpf(cpf);
+        validationAssociateCpf(cpf, agenda.getId());
 
         voteRepository.save(
             Vote.builder().
@@ -48,9 +50,14 @@ public class VoteServiceImpl implements VoteService {
 
     }
 
+    @Override
+    public List<ResultDTO> countingOfVotes() {
+        return voteRepository.countVotes();
+    }
 
-    private void validationAssociateCpf(String associateCpf) {
-        var unfit = voteRepository.existsByAssociateCpf(associateCpf);
+
+    private void validationAssociateCpf(String associateCpf, Long agendaId) {
+        var unfit = voteRepository.existsByAssociateCpfAndAgendaId(associateCpf,agendaId);
         var url= "https://user-info.herokuapp.com/users/" + associateCpf;
         var restTemplate = new RestTemplate();
 
