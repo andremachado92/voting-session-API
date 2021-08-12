@@ -25,3 +25,7 @@ dados, banco de dados Mysql, Swagger 2 para documentação e realização de req
 ## ⚙️ Executando os END-POINTS
 
 Acesse o link: http://localhost:8080/swagger-ui.html e obtenha o SWAGGER para ler a documentação e executar os end-points
+
+<div align="center">
+    <img src="./assets/img.png" width="50px"/>
+</div>
