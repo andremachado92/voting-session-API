@@ -33,4 +33,13 @@ public class VoteController {
     public List<ResultDTO>countVotes(){
         return voteService.countingOfVotes();
     }
+
+
+    @PutMapping("/{agendaId}/openSession")
+    @ResponseStatus(code = HttpStatus.OK)
+    @ApiOperation("Open sessions vote")
+    public void openSession(@PathVariable Long agendaId,
+                            @RequestParam(value = "sessionDurationInMinutes",required = false) Integer sessionDurationInMinutes) throws InterruptedException {
+       voteService.openSessionVotingOnAgenda(agendaId, sessionDurationInMinutes);
+    }
 }

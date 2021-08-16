@@ -32,31 +32,6 @@ public class AgendaServiceImpl implements AgendaService {
                 build());
     }
 
-
-    @Override
-    @Async
-    public void openSessionVotingOnAgenda(Long agendaId, Integer sessionDurationInMinutes) throws InterruptedException {
-        var currentAgenda = findById(agendaId);
-        currentAgenda.setSessionStatus(SessionVotingStatusEnum.SESSION_VOTING_OPEN.getName());
-        agendaRepository.save(currentAgenda);
-        vote(sessionDurationInMinutes, currentAgenda);
-    }
-
-
-    @Async
-    private void vote(Integer sessionDurationInMinutes, Agenda currentAgenda) throws InterruptedException {
-
-        if(sessionDurationInMinutes == null || sessionDurationInMinutes == 0L){
-            Thread.sleep(60000);
-        }else{
-            Thread.sleep(sessionDurationInMinutes*60000);
-        }
-
-        currentAgenda.setSessionStatus(SessionVotingStatusEnum.SESSION_VOTING_CLOSE.getName());
-        agendaRepository.save(currentAgenda);
-    }
-
-
     @Override
     public Agenda findById(Long agendaId) {
         return agendaRepository.findById(agendaId).orElseThrow(

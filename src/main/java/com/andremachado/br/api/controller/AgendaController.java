@@ -24,11 +24,4 @@ public class AgendaController {
         agendaService.create(agendaCreateDTO);
     }
 
-    @PutMapping("/{agendaId}/openSession")
-    @ResponseStatus(code = HttpStatus.OK)
-    @ApiOperation("Open sessions vote")
-    public void openSession(@PathVariable Long agendaId,
-                            @RequestParam(value = "sessionDurationInMinutes",required = false) Integer sessionDurationInMinutes) throws InterruptedException {
-        agendaService.openSessionVotingOnAgenda(agendaId, sessionDurationInMinutes);
-    }
 }
