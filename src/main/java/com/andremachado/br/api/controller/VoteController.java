@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,25 +22,27 @@ public class VoteController {
     @PostMapping("/agenda/{agendaId}")
     @ResponseStatus(code = HttpStatus.OK)
     @ApiOperation("vote for an agenda")
-    public void vote(@PathVariable Long agendaId,
-                     @RequestParam("associateCpf") String associateCpf,
-                     @RequestParam("voteDescription") VoteStatusEnum vote ){
+    public ResponseEntity<Void> vote(@PathVariable Long agendaId,
+                                     @RequestParam("associateCpf") String associateCpf,
+                                     @RequestParam("voteDescription") VoteStatusEnum vote ){
         voteService.vote(agendaId,associateCpf,vote);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("countVotes")
     @ResponseStatus(code = HttpStatus.OK)
     @ApiOperation("count votes")
-    public List<ResultDTO>countVotes(){
-        return voteService.countingOfVotes();
+    public ResponseEntity<List<ResultDTO>>countVotes(){
+        return ResponseEntity.ok().body(voteService.countingOfVotes());
     }
 
 
     @PutMapping("/{agendaId}/openSession")
     @ResponseStatus(code = HttpStatus.OK)
     @ApiOperation("Open sessions vote")
-    public void openSession(@PathVariable Long agendaId,
+    public ResponseEntity<Void> openSession(@PathVariable Long agendaId,
                             @RequestParam(value = "sessionDurationInMinutes",required = false) Integer sessionDurationInMinutes) throws InterruptedException {
        voteService.openSessionVotingOnAgenda(agendaId, sessionDurationInMinutes);
+       return ResponseEntity.noContent().build();
     }
 }

@@ -5,6 +5,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -20,8 +21,9 @@ public class AgendaController {
     @PostMapping("/create")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @ApiOperation("create a agenda")
-    public void create(@Valid @RequestBody AgendaCreateDTO agendaCreateDTO){
+    public ResponseEntity<Void> create(@Valid @RequestBody AgendaCreateDTO agendaCreateDTO){
         agendaService.create(agendaCreateDTO);
+        return ResponseEntity.noContent().build();
     }
 
 }
